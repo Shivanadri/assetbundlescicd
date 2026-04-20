@@ -22,9 +22,14 @@ resources:
           default: ${var.schema}
 
       tasks:
-        - task_key: notebook_task
+        - task_key: init
           notebook_task:
             notebook_path: ../src/init.ipynb
+        - task_key: trans
+          depends_on:
+            - task_key: init
+          notebook_task:
+            notebook_path: ../src/transformations.ipynb
 
       environments:
         - environment_key: default
