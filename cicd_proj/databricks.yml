@@ -15,7 +15,7 @@ variables:
     description: The schema to use
 
 targets:
-  dev:
+  cicd_dev:
     # The default target uses 'mode: development' to create a development copy.
     # - Deployed resources get prefixed with '[dev my_user_name]'
     # - Any job schedules and triggers are paused by default.
@@ -26,16 +26,16 @@ targets:
       host: https://dbc-16140102-f40e.cloud.databricks.com
     variables:
       catalog: dev_cicd_catalog
-      schema: dev
-  prod:
+      schema: raw
+  cicd_prod:
     mode: production
     workspace:
       host: https://dbc-16140102-f40e.cloud.databricks.com
       # We explicitly deploy to /Workspace/Users/naveenkumar.vs@prodapt.com to make sure we only have a single copy.
       root_path: /Workspace/Users/naveenkumar.vs@prodapt.com/.bundle/${bundle.name}/${bundle.target}
     variables:
-      catalog: dev_cicd_catalog
-      schema: prod
+      catalog: prod_cicd_catalog
+      schema: raw
     permissions:
       - user_name: naveenkumar.vs@prodapt.com
         level: CAN_MANAGE
